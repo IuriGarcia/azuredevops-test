@@ -3,17 +3,55 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+resources:
+  # repositories:
+  # - repository: self
+  containers:
+  # - container: docker-dind
+  #   image: docker:18-dind
+  # - container: docker-builder
+    # image: docker:18-git
+  - container: terraform
+    image: hashicorp/terraform:0.14.2
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  tag: '$(Build.BuildId)'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+- stage: Build
+  displayName: Build image
+  pool:
+    vmImage: 'ubuntu-18.04'
+    # demands: agent -equals M$-selfhosted
+  jobs:
+  - job: Build_Image
+    displayName: Build_Image
+    timeoutInMinutes: 10
+    container: docker-builder
+    services:
+      docker-dind: docker-dind
+    steps:
+    - bash: echo "Hello world"
+
+# exemplo basico
+# trigger:
+# - main
+
+# pool:
+#   vmImage: ubuntu-latest
+
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#   displayName: 'Run a multi-line script'

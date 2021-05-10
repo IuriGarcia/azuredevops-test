@@ -1,11 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
 - main
@@ -21,24 +13,23 @@ resources:
   - container: terraform
     image: hashicorp/terraform:0.14.2
 
-variables:
-  tag: '$(Build.BuildId)'
+# variables:
+#   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build
-  displayName: Build image
+- stage: Deploy_Test
+  displayName: Deploy_Test
   pool:
     vmImage: 'ubuntu-18.04'
     # demands: agent -equals M$-selfhosted
   jobs:
-  - job: Build_Image
-    displayName: Build_Image
-    timeoutInMinutes: 10
-    container: docker-builder
+  - job: Deploy_Work
+    displayName: Deploy_Work
+    container: terraform
     services:
       docker-dind: docker-dind
     steps:
-    - bash: echo "Hello world"
+    - script: echo "Hello world"
 
 # exemplo basico
 # trigger:

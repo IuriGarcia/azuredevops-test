@@ -6,8 +6,8 @@ resources:
   # repositories:
   # - repository: self
   containers:
-  # - container: docker-dind
-  #   image: docker:18-dind
+  - container: docker-dind
+    image: docker:18-dind
   # - container: docker-builder
     # image: docker:18-git
   - container: terraform
@@ -25,11 +25,12 @@ stages:
   jobs:
   - job: Deploy_Work
     displayName: Deploy_Work
-    container: terraform
+    # container: docker-dind
     # services:
       # docker-dind: docker-dind
     steps:
-    - script: printenv
+    - script: |
+      docker -v
 
 # exemplo basico
 # trigger:

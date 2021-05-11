@@ -3,15 +3,12 @@ trigger:
 - main
 
 resources:
-  # repositories:
-  # - repository: self
+  repositories:
+  - repository: self
   containers:
-  - container: docker-dind
-    image: docker:18-dind
-  # - container: docker-builder
-    # image: docker:18-git
-  - container: terraform
-    image: hashicorp/terraform:0.14.2
+  - container: docker-builder
+    image: microsoft/vsts-agent:ubuntu-16.04-docker-18.06.1-ce-standard
+
 
 # variables:
 #   tag: '$(Build.BuildId)'
@@ -25,17 +22,12 @@ stages:
   jobs:
   - job: Deploy_Work
     displayName: Deploy_Work
-    # container: docker-dind
+    container: docker-builder
     # services:
       # docker-dind: docker-dind
     steps:
-    - task: Docker@2
-      displayName: Login to ACR
-      inputs:
-        command: login
-        containerRegistry: pipelinetest1234
     - script: |
-        docker run pipelinetest1234.azurecr.io/hello-world:latest 
+        docker run -ti --rm --entrypoint /bin/sh hashicorp/terraform:0.14.2 -c printenv
 
 # exemplo basico
 # trigger:

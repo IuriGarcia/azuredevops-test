@@ -29,8 +29,7 @@ stages:
     # services:
       # docker-dind: docker-dind
     steps:
-    - bash: |
-        docker -v
+    - bash: echo "Hello World"
 
 # exemplo basico
 # trigger:

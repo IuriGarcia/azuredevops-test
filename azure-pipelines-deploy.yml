@@ -29,7 +29,7 @@ stages:
     services:
       docker-dind: docker-dind
     steps:
-    - script: echo "Hello world"
+    - script: printenv
 
 # exemplo basico
 # trigger:

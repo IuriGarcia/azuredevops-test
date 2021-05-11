@@ -17,7 +17,7 @@ stages:
   displayName: Deploy_Test
   pool:
     vmImage: 'ubuntu-18.04'
-    # demands: agent -equals M$-selfhosted
+    demands: agent -equals AzureDevOps-Agent
   jobs:
   - job: Deploy_Work
     displayName: Deploy_Work

@@ -26,8 +26,8 @@ stages:
   - job: Deploy_Work
     displayName: Deploy_Work
     container: terraform
-    services:
-      docker-dind: docker-dind
+    # services:
+      # docker-dind: docker-dind
     steps:
     - script: printenv
 

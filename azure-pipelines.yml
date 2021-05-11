@@ -1,6 +1,7 @@
 # Docker
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# task Docker input.repository é o nome da service connection do registry
 
 trigger:
 - master
@@ -23,7 +24,16 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
+        containerRegistry: pipelinetest1234
+        repository: pipelinetest1234 
         command: build
         dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
         tags: |
           $(tag)
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: pipelinetest1234
+        repository: pipelinetest1234
+        command: push
+      displayName: Docker image push

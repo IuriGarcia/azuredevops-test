@@ -29,7 +29,7 @@ stages:
     # services:
       # docker-dind: docker-dind
     steps:
-    - script: |
+    - bash: |
         docker -v
 
 # exemplo basico

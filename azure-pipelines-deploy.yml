@@ -30,7 +30,7 @@ stages:
       # docker-dind: docker-dind
     steps:
     - script: |
-      docker -v
+        docker -v
 
 # exemplo basico
 # trigger:

@@ -28,7 +28,7 @@ stages:
     steps:
     - script: cd app && ls
     - script: |
-        docker run --rm --entrypoint /bin/sh hashicorp/terraform:0.14.2 -c printenv
+        docker build -t myapp ./app/
 
 # exemplo basico
 # trigger:

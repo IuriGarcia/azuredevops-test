@@ -25,11 +25,12 @@ stages:
       displayName: Build an image
       inputs:
         containerRegistry: docker-hub
-        repository: $(imageRepository) 
+        repository: azuredevops-test 
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
         tags: |
-          $(tag)
+          $(Build.BuildNumber)
+          latest
 
     # - task: Docker@2
     #   inputs:

@@ -24,16 +24,16 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        containerRegistry: pipelinetest1234
-        repository: pipelinetest1234 
-        command: build
+        containerRegistry: docker-hub
+        repository: $(imageRepository) 
+        command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/app/Dockerfile'
         tags: |
           $(tag)
 
-    - task: Docker@2
-      inputs:
-        containerRegistry: pipelinetest1234
-        repository: pipelinetest1234
-        command: push
-      displayName: Docker image push
+    # - task: Docker@2
+    #   inputs:
+    #     containerRegistry: docker-hub
+    #     repository: 
+    #     command: login
+    #   displayName: Docker image push

@@ -27,12 +27,7 @@ stages:
       # docker-dind: docker-dind
     steps:
     - script: printenv
-      target:
-        container: docker-builder
-    - task: Docker@2
-      inputs:
-        command: stop
-        container: docker-builder
+
 
 # exemplo basico
 # trigger:

@@ -6,7 +6,8 @@ resources:
   - repository: self
   containers:
   - container: docker-builder
-    image: microsoft/vsts-agent:ubuntu-16.04-docker-18.06.1-ce-standard
+    image: docker:18-git
+    # image: microsoft/vsts-agent:ubuntu-16.04-docker-18.06.1-ce-standard
 
 
 # variables:
@@ -26,9 +27,13 @@ stages:
     # services:
       # docker-dind: docker-dind
     steps:
-    - script: cd app && ls
-    - script: |
-        docker build -t myapp ./app/
+    - script: printenv
+      target:
+        container: docker-builder
+    - task: Docker@2
+      inputs:
+        command: stop
+        container: docker-builder
 
 # exemplo basico
 # trigger:

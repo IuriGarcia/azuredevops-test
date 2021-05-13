@@ -39,4 +39,4 @@ stages:
         containerRegistry: docker-hub
         command: login
     - script: |
-        docker run --rm --entrypoint /bin/sh hashicorp/terraform:0.14.2 -c printenv
+        docker run --rm --entrypoint /bin/sh hashicorp/terraform:0.14.2 -c ls

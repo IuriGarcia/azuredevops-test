@@ -6,8 +6,7 @@ resources:
   - repository: self
   containers:
   - container: docker-builder
-    image: docker:18-git
-    # image: microsoft/vsts-agent:ubuntu-16.04-docker-18.06.1-ce-standard
+    image: microsoft/vsts-agent:ubuntu-16.04-docker-18.06.1-ce-standard
 
 
 # variables:

@@ -39,4 +39,10 @@ stages:
         containerRegistry: docker-hub
         command: login
     - script: |
-        docker run --rm -v $(Build.SourcesDirectory):/tmp/ --entrypoint /bin/sh hashicorp/terraform:0.14.2 -c ls /tmp/
+        docker run \
+        --rm \
+        -v $(Build.SourcesDirectory):/tmp/ \
+        --entrypoint /bin/sh \
+        -e TF_VAR_registry_username=$(TF_VAR_registry_username) \
+        hashicorp/terraform:0.14.2 \
+        -c 'ls /tmp/ && env'

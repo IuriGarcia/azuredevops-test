@@ -27,7 +27,7 @@ stages:
     - task: Cache@2
       inputs:
         key: node_modules
-        path: $(Build.SourcesDirectory)/node_modules
+        path: $(Build.SourcesDirectory)/app
         
     # não tem ".terraform" ?
     # - task: Cache@2 
